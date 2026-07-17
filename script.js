@@ -1,34 +1,22 @@
 (() => {
-  const menuButton = document.querySelector('.menu-toggle');
-  const navigation = document.querySelector('.primary-nav');
-  const navLinks = [...document.querySelectorAll('.primary-nav > a[href^="#"]')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const setMenu = (open) => {
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
-    navigation.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+  const motionSpeed = reducedMotion.matches ? 1.8 : 1;
+  const motionAnimations = [];
+  const animateLayer = (selector, keyframes, duration) => {
+    const element = document.querySelector(selector);
+    if (!element || typeof element.animate !== 'function') return;
+    motionAnimations.push(element.animate(keyframes, { duration: duration * motionSpeed, iterations: Infinity, easing: 'linear' }));
   };
 
-  menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
-  navLinks.forEach((link) => link.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') setMenu(false);
-  });
-
-  const observedSections = navLinks.map((link) => document.querySelector(link.hash)).filter(Boolean);
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    navLinks.forEach((link) => {
-      const active = link.hash === `#${visible.target.id}`;
-      link.classList.toggle('active', active);
-      if (active) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
-  }, { rootMargin: '-20% 0px -55%', threshold: [0.05, 0.3, 0.6] });
-  observedSections.forEach((section) => sectionObserver.observe(section));
+  // Web Animations API is native in Chrome and guarantees compositor-driven motion.
+  animateLayer('.orbit-alpha', [{ transform: 'rotate(62deg)' }, { transform: 'rotate(422deg)' }], 16000);
+  animateLayer('.orbit-beta', [{ transform: 'rotate(-37deg)' }, { transform: 'rotate(323deg)' }], 21000);
+  animateLayer('.orbit-gamma', [{ transform: 'rotate(14deg)' }, { transform: 'rotate(374deg)' }], 28000);
+  animateLayer('.outer-halo', [{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], 21000);
+  animateLayer('.energy-orb', [{ transform: 'scale(1)' }, { transform: 'scale(1.008)' }, { transform: 'scale(1)' }], 8000);
+  animateLayer('.core-pulse', [{ transform: 'scale(.72)', opacity: 0 }, { transform: 'scale(1)', opacity: .58 }, { transform: 'scale(1.55)', opacity: 0 }], 4800);
+  animateLayer('.cyan-flare', [{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(1.1)', opacity: .85 }, { transform: 'scale(1)', opacity: 1 }], 4000);
 
   const stage = document.querySelector('.orbital-stage');
   const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -92,7 +80,11 @@
     cancelAnimationFrame(animationFrame);
     if (!reducedMotion.matches && running) animationFrame = requestAnimationFrame(drawParticles);
   };
-  document.addEventListener('visibilitychange', () => { running = !document.hidden; updateMotion(); });
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    motionAnimations.forEach((animation) => document.hidden ? animation.pause() : animation.play());
+    updateMotion();
+  });
   window.addEventListener('pageshow', () => { running = true; updateMotion(); });
   reducedMotion.addEventListener('change', updateMotion);
   window.addEventListener('resize', resizeCanvas, { passive: true });
