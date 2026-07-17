@@ -54,8 +54,8 @@
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && grid.classList.contains('has-active')) {
-      closePanels();
       const activeCard = cards.find((card) => card.classList.contains('is-active'));
+      closePanels();
       if (activeCard) activeCard.focus();
     }
   });
