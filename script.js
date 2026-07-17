@@ -70,6 +70,16 @@
       const wobble = Math.sin(time * .0004 + index) * 8;
       const x = particle.x + Math.cos(angle) * (particle.radius + wobble);
       const y = particle.y + Math.sin(angle) * (particle.radius * .72 + wobble);
+      if (index % 4 === 0) {
+        const direction = particle.speed > 0 ? 1 : -1;
+        const tail = 11 + particle.size * 5;
+        context.beginPath();
+        context.moveTo(x, y);
+        context.lineTo(x + Math.sin(angle) * tail * direction, y - Math.cos(angle) * tail * .72 * direction);
+        context.strokeStyle = index % 3 === 0 ? `rgba(0,220,255,${particle.alpha * .32})` : `rgba(130,61,255,${particle.alpha * .32})`;
+        context.lineWidth = Math.max(.35, particle.size * .45);
+        context.stroke();
+      }
       context.beginPath();
       context.arc(x, y, particle.size, 0, Math.PI * 2);
       context.fillStyle = index % 3 === 0 ? `rgba(0,220,255,${particle.alpha})` : `rgba(130,61,255,${particle.alpha})`;

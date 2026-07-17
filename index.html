@@ -35,9 +35,9 @@
 
           <nav id="primary-navigation" class="primary-nav" aria-label="Navegación principal">
             <a href="#soluciones">Soluciones</a>
-            <a href="#sectores">Sectores</a>
-            <a href="#tecnologia">Tecnología</a>
-            <a href="#contacto">Contacto</a>
+            <button class="nav-disabled" type="button" disabled aria-label="Sectores, próximamente">Sectores</button>
+            <button class="nav-disabled" type="button" disabled aria-label="Tecnología, próximamente">Tecnología</button>
+            <button class="nav-disabled" type="button" disabled aria-label="Contacto, próximamente">Contacto</button>
             <a class="advisory-button mobile-advisory" href="mailto:peru.labs.pe@gmail.com?subject=Solicitud%20de%20asesor%C3%ADa%20AMARU%20AI">
               <span>Solicitar asesoría</span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" /></svg>
@@ -60,10 +60,16 @@
           <div class="orbital-stage" aria-label="IA, impacto real" role="img">
             <div class="violet-cloud" aria-hidden="true"></div>
             <div class="energy-orb">
+              <div class="future-orbits" aria-hidden="true">
+                <span class="future-orbit orbit-alpha"></span>
+                <span class="future-orbit orbit-beta"></span>
+                <span class="future-orbit orbit-gamma"></span>
+              </div>
               <div class="outer-halo" aria-hidden="true"></div>
               <div class="ring-flow" aria-hidden="true"></div>
               <div class="cyan-flare" aria-hidden="true"></div>
               <div class="orb-core">
+                <div class="core-pulse" aria-hidden="true"></div>
                 <span class="orb-ia">IA</span>
                 <span class="orb-light" aria-hidden="true"></span>
                 <span class="orb-impact">IMPACTO REAL</span>
@@ -85,7 +91,7 @@
         </div>
       </section>
 
-      <section id="sectores" class="paper-section" aria-labelledby="sectors-title">
+      <section id="soluciones" class="paper-section" aria-labelledby="sectors-title">
         <h2 id="sectors-title" class="visually-hidden">Sectores</h2>
         <div class="sector-grid">
           <article class="sector-card public-card">
@@ -131,20 +137,6 @@
         </footer>
       </section>
 
-      <div class="lower-content">
-        <section id="soluciones" class="compact-section" aria-labelledby="solutions-title">
-          <p class="section-number" aria-hidden="true">01</p>
-          <div><h2 id="solutions-title">Soluciones</h2><p>Automatización documental · Analítica y trazabilidad · Asistencia estratégica con IA</p></div>
-        </section>
-        <section id="tecnologia" class="compact-section" aria-labelledby="technology-title">
-          <p class="section-number" aria-hidden="true">02</p>
-          <div><h2 id="technology-title">Tecnología</h2><p>IA aplicada · Integración segura · Soluciones medibles</p></div>
-        </section>
-        <section id="contacto" class="compact-section contact-section" aria-labelledby="contact-title">
-          <p class="section-number" aria-hidden="true">03</p>
-          <div><h2 id="contact-title">Contacto</h2><p>Conversemos sobre el desafío que quieres transformar.</p><a href="mailto:peru.labs.pe@gmail.com">peru.labs.pe@gmail.com</a></div>
-        </section>
-      </div>
     </main>
     <script src="script.js" defer></script>
   </body>

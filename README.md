@@ -29,4 +29,4 @@ En la configuración del repositorio, selecciona **Settings → Pages → Source
 ## Actualizar enlaces
 
 - Para cambiar la URL de AndesNova, reemplaza las dos apariciones de `https://www.andesnova.solutions/` en `index.html`.
-- Para cambiar el correo de contacto, reemplaza `peru.labs.pe@gmail.com` en `index.html` (aparece en el botón de asesoría y en la sección de contacto).
+- Para cambiar el correo de contacto, reemplaza `peru.labs.pe@gmail.com` en `index.html` (aparece en el botón de asesoría para escritorio y móvil).
