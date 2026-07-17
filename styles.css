@@ -228,6 +228,100 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .reference-footer { margin-top: 34px; }
 }
 
+/* Keep the complete experience inside a single responsive viewport. */
+html, body { height: 100%; }
+body { overflow: hidden; }
+main { height: 100svh; height: 100dvh; display: grid; grid-template-rows: minmax(0, 56.15fr) minmax(0, 43.85fr); overflow: hidden; }
+.hero, .paper-section { height: 100%; min-height: 0; }
+
+@media (max-height: 820px) and (min-width: 901px) {
+  main { grid-template-rows: minmax(0, 65fr) minmax(0, 35fr); }
+  .hero { height: 100%; }
+  .paper-section { height: 100%; padding-top: 17px; }
+  .sector-card { height: 210px; }
+  .sector-icon { top: 14px; width: 86px; height: 86px; }
+  .sector-icon svg { width: 48px; height: 48px; }
+  .card-content { margin: 18px 18px 10px 125px; }
+  .card-content h3 { font-size: 24px; }
+  .card-rule { margin: 9px 0 10px; }
+  .card-content p { font-size: 14px; line-height: 1.42; }
+  .card-content ul { margin-top: 9px; gap: 4px; }
+  .card-content li { font-size: 13px; padding-left: 25px; }
+  .card-content li::before { width: 17px; height: 17px; font-size: 11px; }
+  .sector-card::after { top: 82px; }
+  .reference-footer { margin-top: 8px; }
+}
+
+@media (max-width: 900px) and (min-width: 561px) {
+  main { grid-template-rows: minmax(0, 58fr) minmax(0, 42fr); }
+  .hero { height: 100%; min-height: 0; }
+  .site-header { height: 118px; }
+  .hero-content { height: calc(100% - 118px); }
+  .hero-copy { position: absolute; left: 32px; top: 46px; width: 45%; margin: 0; }
+  .hero-copy h1 { font-size: clamp(34px, 5.3vw, 43px); }
+  .title-rule { width: 120px; margin-top: 20px; }
+  .hero-copy p { margin-top: 18px; font-size: 16px; line-height: 1.45; }
+  .orbital-stage { top: 2px; right: -28px; width: 480px; height: 480px; transform: scale(.68); transform-origin: center; }
+  .paper-section { height: 100%; min-height: 0; padding: 22px 0 10px; }
+  .sector-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; gap: 18px; padding: 0 20px; }
+  .sector-card { height: 285px; min-height: 0; }
+  .sector-icon { top: 16px; left: 16px; width: 82px; height: 82px; }
+  .sector-icon svg { width: 44px; height: 44px; }
+  .card-content { margin: 22px 15px 12px 113px; }
+  .card-content h3 { font-size: 21px; }
+  .card-rule { width: 66px; margin: 11px 0 34px; }
+  .card-content p { margin-left: -97px; font-size: 14px; line-height: 1.42; }
+  .card-content ul { margin: 12px 0 0 -97px; gap: 6px; }
+  .card-content li { font-size: 13px; padding-left: 24px; }
+  .card-content li::before { width: 16px; height: 16px; font-size: 10px; }
+  .sector-card::after { top: 112px; }
+  .reference-footer { margin-top: 16px; }
+}
+
+@media (max-width: 560px) {
+  main { grid-template-rows: minmax(0, min(58dvh, 500px)) minmax(0, 1fr); }
+  .hero { height: 100%; min-height: 0; }
+  .site-header { height: 94px; padding-top: 16px; }
+  .brand-name { font-size: clamp(21px, 6.5vw, 27px); }
+  .brand p { font-size: 12px; margin: 5px 0 6px; }
+  .brand-credit { font-size: 10px; }
+  .menu-toggle { width: 42px; height: 42px; }
+  .hero-content { height: calc(100% - 94px); }
+  .hero-copy { top: 16px; }
+  .hero-copy h1 { font-size: clamp(29px, 8.2vw, 34px); line-height: 1.12; }
+  .title-rule { width: 108px; margin-top: 14px; }
+  .hero-copy p { max-width: 310px; margin-top: 13px; font-size: 13px; line-height: 1.4; }
+  .orbital-stage { top: 122px; width: 270px; height: 270px; }
+  .energy-orb { width: 220px; height: 220px; }
+  .future-orbits { transform: scale(.54); }
+  .cyan-flare { top: 37px; right: -2px; width: 38px; height: 38px; }
+  .cyan-flare::before { width: 78px; }
+  .cyan-flare::after { height: 78px; }
+  .orb-ia { font-size: 18px; }
+  .orb-light { width: 66px; margin: 5px 0 7px; }
+  .orb-impact { font-size: 10px; letter-spacing: .22em; }
+  .core-pulse { width: 112px; height: 112px; }
+  .orb-core::after { inset: 42px; }
+  .violet-cloud { width: 150px; height: 135px; }
+  .tear { height: 44px; }
+  .paper-section { height: 100%; min-height: 0; padding: 8px 0 5px; }
+  .sector-grid { gap: 8px; padding: 0 10px; }
+  .sector-card { height: 128px; min-height: 0; border-radius: 12px; }
+  .sector-icon { top: 11px; left: 11px; width: 62px; height: 62px; }
+  .sector-icon svg { width: 34px; height: 34px; stroke-width: 3.8; }
+  .card-content { margin: 11px 8px 6px 84px; }
+  .card-content h3 { font-size: 18px; line-height: 1.1; }
+  .card-rule { width: 54px; height: 1px; margin: 6px 0 7px; }
+  .card-content p { margin: 0; font-size: 11.5px; line-height: 1.32; }
+  .card-content ul { display: flex; flex-wrap: nowrap; gap: 7px; margin: 7px 0 0 -73px; }
+  .card-content li { padding-left: 13px; font-size: 9.5px; white-space: nowrap; }
+  .card-content li::before { top: 0; width: 10px; height: 10px; font-size: 7px; }
+  .sector-card::after { top: 47px; border-top-width: 17px; border-bottom-width: 17px; border-left-width: 13px; }
+  .reference-footer { gap: 8px; margin-top: 7px; padding: 0 10px; }
+  .footer-credit { gap: 7px; font-size: 10px; }
+  .andesnova-mark { width: 29px; height: 19px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
