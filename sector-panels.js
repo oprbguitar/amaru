@@ -1,10 +1,36 @@
 (() => {
+  const compactControls = document.createElement('style');
+  compactControls.textContent = `
+    @media (max-width: 560px) {
+      .sector-card:not(.is-active):not(.is-collapsed) .sector-action {
+        top: 11px;
+        right: 9px;
+        bottom: auto;
+        gap: 0;
+        font-size: 0;
+      }
+      .sector-card:not(.is-active):not(.is-collapsed) .sector-action svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+  `;
+  document.head.appendChild(compactControls);
+
   const paperSection = document.querySelector('.paper-section');
   const grid = document.querySelector('.sector-grid');
   if (!paperSection || !grid) return;
 
   const cards = Array.from(grid.querySelectorAll('.sector-card[data-sector]'));
   if (!cards.length) return;
+
+  const getSectorName = (card) => card.querySelector('h3')?.textContent.trim().toLowerCase() || 'el sector';
+  const setAccessibleState = (card, active) => {
+    card.setAttribute('aria-expanded', String(active));
+    card.setAttribute('aria-label', `${active ? 'Contraer' : 'Abrir'} capacidades para ${getSectorName(card)}`);
+    const details = card.querySelector('.sector-details');
+    if (details) details.setAttribute('aria-hidden', String(!active));
+  };
 
   const closePanels = () => {
     grid.classList.remove('has-active');
@@ -13,9 +39,7 @@
 
     cards.forEach((card) => {
       card.classList.remove('is-active', 'is-collapsed');
-      card.setAttribute('aria-expanded', 'false');
-      const details = card.querySelector('.sector-details');
-      if (details) details.setAttribute('aria-hidden', 'true');
+      setAccessibleState(card, false);
     });
   };
 
@@ -36,9 +60,7 @@
       const active = card === selectedCard;
       card.classList.toggle('is-active', active);
       card.classList.toggle('is-collapsed', !active);
-      card.setAttribute('aria-expanded', String(active));
-      const details = card.querySelector('.sector-details');
-      if (details) details.setAttribute('aria-hidden', String(!active));
+      setAccessibleState(card, active);
     });
   };
 
