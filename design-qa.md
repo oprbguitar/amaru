@@ -11,6 +11,7 @@
 - Public open with Gestión documental hovered, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-public-gestion-hover.png`
 - Private open with Analítica ejecutiva hovered, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-private-analitica-hover.png`
 - Enlarged Gestión documental technical preview, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-public-expanded-preview-v3.png`
+- Floating Gestión documental detail panel, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-public-floating-flyout-v4.png`
 - Hover preview before/after focused comparison: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\hover-preview-before-after-v3.png`
 - Public open, 390 × 844: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\390x844-public-open.png`
 - Private open, 390 × 844: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\390x844-private-open.png`
@@ -23,14 +24,14 @@ The existing one-page composition, hero, orbital artwork, paper tear, Manrope ty
 
 ## Focused region comparison evidence
 
-The expanded public panel retains the reference hierarchy: compact sector header, two-column capability grid, right-hand standards column, rounded institutional surfaces, and purple accent. Hover adds the requested chips, outcome, and technical preview without changing the 90px capability-card height or grid tracks. Following user feedback, the preview now grows from 84% scale to full size, covers 84% of the card width, reaches 0.16 opacity, and fades back to zero over 340ms when the pointer leaves. The private version uses the same structure with the cyan accent.
+The expanded public panel retains the reference hierarchy: compact sector header, two-column capability grid, right-hand standards column, rounded institutional surfaces, and purple accent. Hover now leaves the original title and summary untouched, then opens a compact opaque flyout over the neighboring capability slot. Its extra options and outcome occupy a dedicated text column, while the technical illustration floats in a separate 64 × 58px side column at 0.18 opacity. The flyout does not change the capability-card height or grid tracks and fades away when the pointer leaves. The private version uses the same structure with the cyan accent.
 
 ## Required fidelity surfaces
 
 - Fonts and typography: Manrope, weights, hierarchy, wrapping, and sector colors are preserved. Mobile capability title, summary, chips, and outcome are 11px or larger.
 - Spacing and layout rhythm: capability cards remain fixed-size on desktop hover; expanded panels use `minmax(0, …)` tracks and internal scrolling where height is constrained.
 - Colors and visual tokens: existing purple/cyan accents, translucent paper surfaces, borders, and restrained shadows are preserved.
-- Image quality and asset fidelity: no raster or stock imagery was added. Technical previews are decorative inline SVGs requested by the brief, use `currentColor`, remain behind text, and ignore pointer input.
+- Image quality and asset fidelity: no raster or stock imagery was added. Existing decorative technical previews use `currentColor`, sit beside—not behind—the flyout copy, stay intentionally translucent, and ignore pointer input.
 - Copy and content: all supplied capability chips and result statements are present verbatim. Existing business, legal, hero, brand, and AndesNova copy is unchanged.
 
 ## Interaction and accessibility evidence
@@ -53,6 +54,7 @@ Tested at 1920 × 1080, 1440 × 900, 1366 × 768, 1024 × 768, 768 × 1024, 430 
 2. Initial mobile capture: P1 capability rows and standards content overlapped; the active-sector summary also approached the detail content. Fixed by using a block stack inside the mobile scroller, explicit 118px capability rows, and a stable 86px active header.
 3. Post-fix capture: capability cards, standards panel, and active header are separated; mobile content is readable, internally scrollable, and has no horizontal or page-level vertical overflow.
 4. Hover-visibility feedback: P2 technical preview was too small and faint at 58% width and 0.11 opacity. Fixed by expanding it to 84% width, increasing its maximum opacity to 0.16, and adding a 340ms opacity / 420ms scale transition. Chromium measurements confirmed the card remains 90px high and the preview fades from 0.16 to 0 without changing grid tracks.
+5. Floating-detail feedback: P1 chips and the technical preview competed with the normal capability copy inside the same small card. Fixed by keeping the summary visible and moving supplementary content into a side flyout with an opaque surface and a dedicated translucent illustration column. Chrome checks across all eight capabilities confirmed every flyout reaches opacity 1, remains inside the active sector card, introduces zero document overflow, and leaves desktop card tracks unchanged. On pointer leave, measured flyout opacity progressed from 1 to 0.118 at 150ms and 0 at 410ms.
 
 ## Remaining findings
 
