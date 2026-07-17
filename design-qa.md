@@ -10,6 +10,8 @@
 - Closed, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-closed.png`
 - Public open with Gestión documental hovered, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-public-gestion-hover.png`
 - Private open with Analítica ejecutiva hovered, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-private-analitica-hover.png`
+- Enlarged Gestión documental technical preview, 1440 × 900: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\1440x900-public-expanded-preview-v3.png`
+- Hover preview before/after focused comparison: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\hover-preview-before-after-v3.png`
 - Public open, 390 × 844: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\390x844-public-open.png`
 - Private open, 390 × 844: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\390x844-private-open.png`
 - Full-view comparison: `C:\Users\oprbg\.codex\visualizations\2026\07\17\019f6eca-1bda-7a80-83d5-e1b3fcde347f\amaru-sector-qa\comparison-full-reference-vs-implementation.png`
@@ -21,7 +23,7 @@ The existing one-page composition, hero, orbital artwork, paper tear, Manrope ty
 
 ## Focused region comparison evidence
 
-The expanded public panel retains the reference hierarchy: compact sector header, two-column capability grid, right-hand standards column, rounded institutional surfaces, and purple accent. Hover adds the requested chips, outcome, and low-opacity technical preview without changing the 90px capability-card height or grid tracks. The private version uses the same structure with the cyan accent.
+The expanded public panel retains the reference hierarchy: compact sector header, two-column capability grid, right-hand standards column, rounded institutional surfaces, and purple accent. Hover adds the requested chips, outcome, and technical preview without changing the 90px capability-card height or grid tracks. Following user feedback, the preview now grows from 84% scale to full size, covers 84% of the card width, reaches 0.16 opacity, and fades back to zero over 340ms when the pointer leaves. The private version uses the same structure with the cyan accent.
 
 ## Required fidelity surfaces
 
@@ -50,6 +52,7 @@ Tested at 1920 × 1080, 1440 × 900, 1366 × 768, 1024 × 768, 768 × 1024, 430 
 1. Initial pass: P2 standards note overflow at 1440 × 900 and barely visible closed-state footer. Fixed by widening the standards track, adding explicit internal overflow, and tightening footer spacing.
 2. Initial mobile capture: P1 capability rows and standards content overlapped; the active-sector summary also approached the detail content. Fixed by using a block stack inside the mobile scroller, explicit 118px capability rows, and a stable 86px active header.
 3. Post-fix capture: capability cards, standards panel, and active header are separated; mobile content is readable, internally scrollable, and has no horizontal or page-level vertical overflow.
+4. Hover-visibility feedback: P2 technical preview was too small and faint at 58% width and 0.11 opacity. Fixed by expanding it to 84% width, increasing its maximum opacity to 0.16, and adding a 340ms opacity / 420ms scale transition. Chromium measurements confirmed the card remains 90px high and the preview fades from 0.16 to 0 without changing grid tracks.
 
 ## Remaining findings
 

@@ -197,23 +197,26 @@
 .capability-tech-preview {
   position: absolute;
   z-index: 1;
-  inset: 5px 4px 3px auto;
-  width: 58%;
-  height: calc(100% - 8px);
+  top: -9px;
+  right: -14px;
+  width: 84%;
+  height: calc(100% + 18px);
   color: var(--accent);
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.35;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .24s ease;
+  transform: translateX(12px) scale(.84);
+  transform-origin: right center;
+  transition: opacity .34s ease, transform .42s cubic-bezier(.2,.72,.2,1);
 }
 
 .capability-tech-preview .tech-active {
-  fill: color-mix(in srgb, var(--accent) 18%, transparent);
-  stroke-width: 1.8;
+  fill: color-mix(in srgb, var(--accent) 22%, transparent);
+  stroke-width: 2;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -239,7 +242,10 @@
     transform: translateY(0);
   }
 
-  .capability-item:hover .capability-tech-preview { opacity: .11; }
+  .capability-item:hover .capability-tech-preview {
+    opacity: .16;
+    transform: translateX(0) scale(1);
+  }
 }
 
 .standards-panel {
