@@ -14,6 +14,176 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=chrome-motion-2" />
+    <style>
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(0, 2, 8, .2), transparent 42%, rgba(0, 4, 12, .08)),
+          radial-gradient(ellipse at center, transparent 54%, rgba(0, 0, 0, .24) 100%);
+      }
+
+      .brand-name {
+        text-shadow: 0 0 28px rgba(255, 255, 255, .055);
+      }
+
+      .brand p {
+        color: rgba(255, 255, 255, .92);
+        font-weight: 500;
+      }
+
+      .brand-credit {
+        color: rgba(255, 255, 255, .7);
+      }
+
+      .advisory-preview {
+        cursor: default;
+        user-select: none;
+        opacity: .94;
+        box-shadow: inset 0 0 18px rgba(95, 57, 255, .045);
+      }
+
+      .advisory-preview:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-copy h1 {
+        text-wrap: balance;
+        text-shadow: 0 7px 32px rgba(0, 0, 0, .22);
+      }
+
+      .gradient-text {
+        background-size: 180% 100%;
+        animation: gradient-breathe 9s ease-in-out infinite alternate;
+      }
+
+      .title-rule {
+        position: relative;
+        overflow: hidden;
+        border-radius: 999px;
+      }
+
+      .title-rule::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 34%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .92), transparent);
+        transform: translateX(-150%);
+        animation: rule-glint 6.5s ease-in-out infinite;
+      }
+
+      .hero-copy p {
+        color: rgba(255, 255, 255, .82);
+      }
+
+      .orb-impact {
+        font-weight: 500;
+        text-shadow: 0 0 15px rgba(0, 223, 231, .18);
+      }
+
+      .sector-card {
+        cursor: default;
+        overflow: hidden;
+        isolation: isolate;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+      }
+
+      .sector-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, .34) 48%, transparent 72%);
+        transform: translateX(-115%);
+        transition: transform .9s cubic-bezier(.2, .7, .2, 1);
+      }
+
+      .sector-card:hover::before {
+        transform: translateX(115%);
+      }
+
+      .sector-icon {
+        transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s ease;
+      }
+
+      .sector-card:hover .sector-icon {
+        transform: translateY(-2px) scale(1.018);
+        box-shadow: 0 18px 28px color-mix(in srgb, var(--accent) 24%, transparent);
+      }
+
+      .footer-line {
+        background: linear-gradient(90deg, transparent, #cfd1d3 18%, #cfd1d3 82%, transparent);
+      }
+
+      .site-header,
+      .hero-copy,
+      .orbital-stage,
+      .sector-card,
+      .reference-footer {
+        animation: interface-reveal .8s cubic-bezier(.2, .75, .25, 1) both;
+      }
+
+      .hero-copy { animation-delay: .08s; }
+      .orbital-stage { animation-delay: .16s; }
+      .sector-card:nth-child(1) { animation-delay: .22s; }
+      .sector-card:nth-child(2) { animation-delay: .3s; }
+      .reference-footer { animation-delay: .38s; }
+
+      @keyframes gradient-breathe {
+        from { background-position: 0% 50%; }
+        to { background-position: 100% 50%; }
+      }
+
+      @keyframes rule-glint {
+        0%, 62% { transform: translateX(-150%); opacity: 0; }
+        70% { opacity: 1; }
+        82%, 100% { transform: translateX(360%); opacity: 0; }
+      }
+
+      @keyframes interface-reveal {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (hover: none), (pointer: coarse) {
+        .sector-card:hover,
+        .advisory-preview:hover {
+          transform: none;
+        }
+
+        .sector-card:hover::before {
+          transform: translateX(-115%);
+        }
+
+        .sector-card:hover .sector-icon {
+          transform: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .site-header,
+        .hero-copy,
+        .orbital-stage,
+        .sector-card,
+        .reference-footer,
+        .gradient-text,
+        .title-rule::after {
+          animation: none !important;
+        }
+      }
+    </style>
     <title>AMARU AI | Strategic Intelligence</title>
   </head>
   <body>
@@ -29,10 +199,10 @@
             <a class="andesnova-link brand-credit" href="https://www.andesnova.solutions/" target="_blank" rel="noopener noreferrer" aria-label="Visitar el sitio web de AndesNova en una pestaña nueva">Powered by AndesNova</a>
           </div>
 
-          <a class="advisory-button desktop-advisory" href="mailto:peru.labs.pe@gmail.com?subject=Solicitud%20de%20asesor%C3%ADa%20AMARU%20AI">
+          <span class="advisory-button desktop-advisory advisory-preview" aria-label="Solicitud de asesoría próximamente" aria-disabled="true">
             <span>Solicitar asesoría</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" /></svg>
-          </a>
+          </span>
         </header>
 
         <div id="inicio" class="hero-content">
