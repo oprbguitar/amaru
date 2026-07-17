@@ -93,6 +93,7 @@
     if (!reducedMotion.matches && running) animationFrame = requestAnimationFrame(drawParticles);
   };
   document.addEventListener('visibilitychange', () => { running = !document.hidden; updateMotion(); });
+  window.addEventListener('pageshow', () => { running = true; updateMotion(); });
   reducedMotion.addEventListener('change', updateMotion);
   window.addEventListener('resize', resizeCanvas, { passive: true });
   resizeCanvas();
